@@ -1,0 +1,104 @@
+@font-face{
+	/*Loads font for title*/
+	font-family: HarowSoildItalic;
+	src: url(HARLOWSI.ttf);
+}
+
+/* ---Styles for main page---*/
+body {
+	background-image: url("backround.jpg");
+	background-size: 100% 100%;
+	margin: 0;
+	padding: 0;
+}
+
+/* Classes */
+.main-top-right{
+	color: #cccccc;
+	margin: 0 auto;
+
+	/*font definition*/
+	font-family: Segoe UI;
+	font-weight: 300;
+	font-size: 3vmin;
+}
+
+.main-top-right li{
+	float: right;
+	cursor: pointer;
+	margin: 0.5em 1em 0 0; /*creates spacing between about and contact*/
+}
+
+.main-top-right li:hover{
+	color: #D1D1C7; /*changes text color to lighter shade*/
+	text-shadow: 0 0 1px #D1D1C7; /*creates small glare effect around text*/
+}
+
+.main-section-container{
+	color: #ffffff;
+	width: 76%;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	bottom: 3vh;
+	left: 12%;
+	right: 12%;
+
+	text-align: justify;
+
+	/*font definition*/
+	font-family: Segoe UI;/* Calibri; */
+	font-weight: 700;
+	font-size: 5vmin;
+	-webkit-text-stroke: 1px black;
+}
+
+/*Utter hax http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-navigation-items-evenly-and-fully-across-a/17951253#17951253 */
+.main-section-container:after{
+	content: '';
+	display: inline-block;
+	width: 100%;
+}
+
+.main-section-container li{
+	display: inline-block;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+/* Id's */
+#main-about{
+}
+
+#main-contact{
+}
+
+#main-title{
+	font-family: HarowSoildItalic;
+	text-align: center;
+	pointer-events: none;
+	color: #cccccc;
+	font-size: 15vmin;
+	padding: 10vmin 0 0 0;
+	-webkit-text-stroke: 1px black;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#main-recent{
+
+}
+
+#main-projects{
+
+}
+
+#main-blog{
+
+}
+
+#main-readroll{
+
+}
