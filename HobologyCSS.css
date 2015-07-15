@@ -35,7 +35,7 @@ body {
 	text-shadow: 0 0 1px #D1D1C7; /*creates small glare effect around text*/
 }
 
-#main-section-container{
+.main-section-container{
 	color: #ffffff;
 	width: 76%;
 	padding: 0;
@@ -59,13 +59,13 @@ body {
 }
 
 /*Utter hax http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-navigation-items-evenly-and-fully-across-a/17951253#17951253 */
-#main-section-container:after{
+.main-section-container:after{
 	content: '';
 	display: inline-block;
 	width: 100%;
 }
 
-#main-section-container li{
+.main-section-container li{
 	display: inline-block;
 	margin: 0 auto;
 	cursor: pointer;
@@ -110,7 +110,7 @@ body {
 
 }
 
-#section-container{
+.section-container{
 	width: 100%;
 	height: 100%;
 	margin: 5vh 0 0 0;
@@ -122,10 +122,10 @@ body {
 	-webkit-transisitions: margin 1s;
 }
 
-#section-container:active{
+.sect-active:read-only{
 	margin: 0vh 0 0 0;
 }
 
-#main-section-container:active{
+.main-sect-active:read-only{
 	margin: 1vh auto 0 calc(50vw - 2em);
 }

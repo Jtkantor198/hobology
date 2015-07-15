@@ -1,13 +1,13 @@
 /*Write dynamic css to transition to box upon click*/
 /*After click, apply scrolling handler*/
 recentSection = document.getElementById("main-recent");
-mainSectionContainer = document.getElementById("main-section-container");
-sectionContainer = document.getElementById("section-container");
+mainSectionContainer = document.getElementsByClassName("main-section-container");
+sectionContainer = document.getElementsByClassName("section-container");
 recentSection.onclick = function(){
 	/*mainSectionContainer.className += " main-section-container-after-click";
 	sectionContainer.className += " section-container-after-click";*/
-	mainSectionContainer.style.margin = "1vh auto 0 calc(50vw - 2em);";
-	sectionContainer.style = "margin: 0vh 0 0 0;";
+	mainSectionContainer[0].className += " sect-active";
+	sectionContainer[0].className += " main-sect-active";
 }
 
 function transition(element, property, value, length){
