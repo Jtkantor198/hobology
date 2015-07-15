@@ -9,3 +9,15 @@ recentSection.onclick = function(){
 	mainSectionContainer.style.margin = "1vh auto 0 calc(50vw - 2em);";
 	sectionContainer.style = "margin: 0vh 0 0 0;";
 }
+
+function transition(element, property, value, length){
+	//currently only limited support
+
+	setInterval(function(){
+		element.style[property] = value;
+	})
+}
+
+function scrollingHandler(){
+	
+}
