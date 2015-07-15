@@ -19,7 +19,7 @@ body {
 	margin: 0 auto;
 
 	/*font definition*/
-	font-family: Segoe UI;
+	font-family: 'Segoe UI', 'Open Sans';
 	font-weight: 300;
 	font-size: 3vmin;
 }
@@ -122,10 +122,22 @@ body {
 	-webkit-transisitions: margin 1s;
 }
 
-.sect-active:read-only{
+.main-sect-active:read-only{
 	margin: 0vh 0 0 0;
 }
 
-.main-sect-active:read-only{
+.recent-active:read-only{
 	margin: 1vh auto 0 calc(50vw - 2em);
+}
+
+.projects-active:read-only{
+	margin: 1vh auto 0 calc(40vw - 2em);
+}
+
+.blog-active:read-only{
+	margin: 1vh auto 0 calc(30vw - 2em);
+}
+
+.readroll-active:read-only{
+	margin: 1vh auto 0 calc(20vw - 2em);
 }
