@@ -14,10 +14,10 @@ function removeClass(ele,cls) {
                     }
 }
 
-/*Write dynamic css to transition to box upon click*/
+/*--------Write dynamic css to transitions to section titles upon click--------*/
 /*After click, apply scrolling handler*/
 recentSection = document.getElementById("main-recent");
-mainSectionContainer = document.getElementsByClassName("main-section-container")[0];
+mainSectionContainer = document.getElementsByClassName("main-section-list")[0];
 sectionContainer = document.getElementsByClassName("section-container")[0];
 
 //Getting the elements to assign handlers to
@@ -28,6 +28,7 @@ readroll    = document.getElementById("main-readroll");
 
 class_list = ["recent-active", "projects-active","blog-active","readroll-active"];
 
+//assigning handlers to add classes with psuedoselectors to initiate transtions
 recent.onclick  = function(){
     for (var item in class_list)
         removeClass(mainSectionContainer, class_list[item]);
@@ -54,23 +55,57 @@ readroll.onclick= function(){
 };
 
 
-/*
-recentSection.onclick = function(){
-    mainSectionContainer.addEventListener("transitionend", function() {alert("transition ended!");});
-	mainSectionContainer.className += " sect-active";
-    sectionContainer.addEventListener("transitionend", function() {alert("transition ended!");});
-	sectionContainer.className += " main-sect-active";
+/*--------Assigning hadlers to build about and contact pages, and switch between them--------*/
+document.getElementById("main-about").onclick = aboutHandler;
+
+function aboutHandler(){
+    var aboutPage = document.createElement("div");
+    aboutPage.className = "about-contact-page";
+    aboutPage.id = "active-about-page";
+    document.body.appendChild(aboutPage);
+    var aboutPage = document.getElementById("active-about-page");
+    var mainTopRight = document.getElementsByClassName("main-top-right")[0];
+    var aboutMainTopRight = mainTopRight.cloneNode(true);
+    aboutMainTopRight.id = "main-top-right";
+    aboutMainTopRight.children.namedItem("main-about").onclick = function(){
+      document.body.removeChild(document.getElementById("active-about-page"));
+    }
+    aboutMainTopRight.children.namedItem("main-contact").onclick = function(){
+      document.body.removeChild(document.getElementById("active-about-page"));
+      contactHandler();
+    }
+    aboutPage.appendChild(aboutMainTopRight);
+    aboutPage.children.namedItem("main-top-right").children.namedItem("main-about").className += "main-selected-about-contact";
 }
 
-function transition(element, property, value, length){
-	//currently only limited support
+document.getElementById("main-contact").onclick = contactHandler;
 
-	setInterval(function(){
-		element.style[property] = value;
-	})
+function contactHandler(){
+    var contactPage = document.createElement("div");
+    contactPage.className = "about-contact-page";
+    contactPage.id = "active-contact-page";
+    document.body.appendChild(contactPage);
+    var contactPage = document.getElementById("active-contact-page");
+    var mainTopRight = document.getElementsByClassName("main-top-right")[0];
+    var contactMainTopRight = mainTopRight.cloneNode(true);
+    contactMainTopRight.id = "main-top-right";
+    contactMainTopRight.children.namedItem("main-contact").onclick = function(){
+      document.body.removeChild(document.getElementById("active-contact-page"));
+    }
+    contactMainTopRight.children.namedItem("main-about").onclick = function(){
+      document.body.removeChild(document.getElementById("active-contact-page"));
+      aboutHandler();
+    }
+    contactPage.appendChild(contactMainTopRight);
+    contactPage.children.namedItem("main-top-right").children.namedItem("main-contact").className += "main-selected-about-contact";
 }
 
-function scrollingHandler(){
-	
-}
-*/
+/*--------Scroll Handler--------*/
+document.addEventListener("wheel" , function(wheel) {
+  if ((Number(document.getElementsByClassName("main-top-right")[0].style.marginTop.substring(0,document.getElementsByClassName("main-top-right")[0].style.marginTop.length-2)) - wheel.deltaY) > 0){
+    document.getElementsByClassName("main-top-right")[0].style.marginTop = "0px"
+  }
+  else{
+    document.getElementsByClassName("main-top-right")[0].style.marginTop = String(Number(document.getElementsByClassName("main-top-right")[0].style.marginTop.substring(0,document.getElementsByClassName("main-top-right")[0].style.marginTop.length-2)) - wheel.deltaY) ;
+  }
+});
