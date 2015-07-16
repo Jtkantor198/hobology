@@ -1,3 +1,19 @@
+//Functions to manipulate class info
+function hasClass(ele,cls) {
+      return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+}
+
+function addClass(ele,cls) {
+      if (!hasClass(ele,cls)) ele.className += " "+cls;
+}
+
+function removeClass(ele,cls) {
+      if (hasClass(ele,cls)) {
+              var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+                  ele.className=ele.className.replace(reg,' ');
+                    }
+}
+
 /*Write dynamic css to transition to box upon click*/
 /*After click, apply scrolling handler*/
 recentSection = document.getElementById("main-recent");
@@ -10,21 +26,31 @@ projects    = document.getElementById("main-projects");
 blog        = document.getElementById("main-blog");
 readroll    = document.getElementById("main-readroll");
 
+class_list = ["recent-active", "projects-active","blog-active","readroll-active"];
+
 recent.onclick  = function(){
-	mainSectionContainer.className += " recent-active";
-	sectionContainer.className += " main-sect-active";
+    for (var item in class_list)
+        removeClass(mainSectionContainer, class_list[item]);
+    addClass(mainSectionContainer, class_list[0]);   //Our tab focus
+	addClass(sectionContainer, "main-sect-active");  //Our opening sweep
 };
 projects.onclick= function(){
-	mainSectionContainer.className += " projects-active";
-	sectionContainer.className += " main-sect-active";
+    for (var item in class_list)
+        removeClass(mainSectionContainer, class_list[item]);
+    addClass(mainSectionContainer, class_list[1]);   //Our tab focus
+	addClass(sectionContainer, "main-sect-active");  //Our opening sweep
 };
 blog.onclick    = function(){
-	mainSectionContainer.className += " blog-active";
-	sectionContainer.className += " main-sect-active";
+    for (var item in class_list)
+        removeClass(mainSectionContainer, class_list[item]);
+    addClass(mainSectionContainer, class_list[2]);   //Our tab focus
+	addClass(sectionContainer, "main-sect-active");  //Our opening sweep
 };
 readroll.onclick= function(){
-	mainSectionContainer.className += " readroll-active";
-	sectionContainer.className += " main-sect-active";
+    for (var item in class_list)
+        removeClass(mainSectionContainer, class_list[item]);
+    addClass(mainSectionContainer, class_list[3]);   //Our tab focus
+	addClass(sectionContainer, "main-sect-active");  //Our opening sweep
 };
 
 
