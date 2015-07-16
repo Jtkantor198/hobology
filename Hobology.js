@@ -29,25 +29,42 @@ readroll    = document.getElementById("main-readroll");
 class_list = ["recent-active", "projects-active","blog-active","readroll-active"];
 
 //assigning handlers to add classes with psuedoselectors to initiate transtions
+var clicked = false;
 recent.onclick  = function(){
+    if (clicked == false){
+      startScrolling();
+      cliked = true;
+    }
     for (var item in class_list)
         removeClass(mainSectionContainer, class_list[item]);
     addClass(mainSectionContainer, class_list[0]);   //Our tab focus
 	addClass(sectionContainer, "main-sect-active");  //Our opening sweep
 };
 projects.onclick= function(){
+    if (clicked == false){
+      startScrolling();
+      cliked = true;
+    }
     for (var item in class_list)
         removeClass(mainSectionContainer, class_list[item]);
     addClass(mainSectionContainer, class_list[1]);   //Our tab focus
 	addClass(sectionContainer, "main-sect-active");  //Our opening sweep
 };
 blog.onclick    = function(){
+    if (clicked == false){
+      startScrolling();
+      cliked = true;
+    }
     for (var item in class_list)
         removeClass(mainSectionContainer, class_list[item]);
     addClass(mainSectionContainer, class_list[2]);   //Our tab focus
 	addClass(sectionContainer, "main-sect-active");  //Our opening sweep
 };
 readroll.onclick= function(){
+    if (clicked == false){
+      startScrolling();
+      cliked = true;
+    }
     for (var item in class_list)
         removeClass(mainSectionContainer, class_list[item]);
     addClass(mainSectionContainer, class_list[3]);   //Our tab focus
@@ -56,6 +73,7 @@ readroll.onclick= function(){
 
 
 /*--------Assigning hadlers to build about and contact pages, and switch between them--------*/
+var mainTopRight = document.getElementsByClassName("main-top-right")[0];
 document.getElementById("main-about").onclick = aboutHandler;
 
 function aboutHandler(){
@@ -64,7 +82,6 @@ function aboutHandler(){
     aboutPage.id = "active-about-page";
     document.body.appendChild(aboutPage);
     var aboutPage = document.getElementById("active-about-page");
-    var mainTopRight = document.getElementsByClassName("main-top-right")[0];
     var aboutMainTopRight = mainTopRight.cloneNode(true);
     aboutMainTopRight.id = "main-top-right";
     aboutMainTopRight.children.namedItem("main-about").onclick = function(){
@@ -86,7 +103,6 @@ function contactHandler(){
     contactPage.id = "active-contact-page";
     document.body.appendChild(contactPage);
     var contactPage = document.getElementById("active-contact-page");
-    var mainTopRight = document.getElementsByClassName("main-top-right")[0];
     var contactMainTopRight = mainTopRight.cloneNode(true);
     contactMainTopRight.id = "main-top-right";
     contactMainTopRight.children.namedItem("main-contact").onclick = function(){
@@ -101,11 +117,19 @@ function contactHandler(){
 }
 
 /*--------Scroll Handler--------*/
-document.addEventListener("wheel" , function(wheel) {
-  if ((Number(document.getElementsByClassName("main-top-right")[0].style.marginTop.substring(0,document.getElementsByClassName("main-top-right")[0].style.marginTop.length-2)) - wheel.deltaY) > 0){
-    document.getElementsByClassName("main-top-right")[0].style.marginTop = "0px"
-  }
-  else{
-    document.getElementsByClassName("main-top-right")[0].style.marginTop = String(Number(document.getElementsByClassName("main-top-right")[0].style.marginTop.substring(0,document.getElementsByClassName("main-top-right")[0].style.marginTop.length-2)) - wheel.deltaY) ;
-  }
-});
+var bottomOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight;
+function startScrolling(){
+  document.addEventListener("wheel" , function(wheel) {
+    var bottomOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight;
+    var marginTop = Number(document.getElementsByClassName("main-top-right")[0].style.marginTop.substring(0,document.getElementsByClassName("main-top-right")[0].style.marginTop.length-2));
+    if ((marginTop - wheel.deltaY) > 0){
+      document.getElementsByClassName("main-top-right")[0].style.marginTop = "0px"
+    }
+    else if (bottomOfPage < (document.documentElement.clientWidth - marginTop)){
+      document.getElementsByClassName("main-top-right")[0].style.marginTop = document.documentElement.clientWidth - bottomOfPage;
+    }
+    else {
+      document.getElementsByClassName("main-top-right")[0].style.marginTop = String(marginTop - wheel.deltaY) ;
+    }
+  })
+}
