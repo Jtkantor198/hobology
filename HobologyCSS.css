@@ -127,17 +127,17 @@ body {
 }
 
 .recent-active:read-only{
-	margin: 1vh auto 0 calc(50vw - 2em);
+	margin: 1vh auto 0 calc(51vw - 2em);
 }
 
 .projects-active:read-only{
-	margin: 1vh auto 0 calc(40vw - 2em);
+	margin: 1vh auto 0 calc(27vw - 2em);
 }
 
 .blog-active:read-only{
-	margin: 1vh auto 0 calc(30vw - 2em);
+	margin: 1vh auto 0 calc(3vw - 2em);
 }
 
 .readroll-active:read-only{
-	margin: 1vh auto 0 calc(20vw - 2em);
+	margin: 1vh auto 0 calc(-21vw - 2em);
 }
