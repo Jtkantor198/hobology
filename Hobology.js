@@ -26,6 +26,7 @@ projects    = document.getElementById("main-projects");
 blog        = document.getElementById("main-blog");
 readroll    = document.getElementById("main-readroll");
 
+//The active classes we switch between
 class_list = ["recent-active", "projects-active","blog-active","readroll-active"];
 
 //assigning handlers to add classes with psuedoselectors to initiate transtions
