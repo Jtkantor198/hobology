@@ -32,7 +32,8 @@ tab_ele_list   = [recent, projects, blog, readroll];
 
 //assigning handlers to add classes with psuedoselectors to initiate transtions
 var clicked = false;
-
+<<<<<<< HEAD
+=======
 recent.onclick  = function(){
     if (clicked == false){
       startScrolling();
@@ -73,7 +74,7 @@ readroll.onclick= function(){
     addClass(mainSectionList, class_list[3]);   //Our tab focus
 	addClass(sectionContainer, "main-sect-active");  //Our opening sweep
 };
-
+>>>>>>> b01346030489e6daf37831e04bd1eb1a0f0b59d2
 
 function tabHandler(value){
     return function(){
