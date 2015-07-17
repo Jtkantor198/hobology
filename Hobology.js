@@ -17,7 +17,7 @@ function removeClass(ele,cls) {
 /*--------Write dynamic css to transitions to section titles upon click--------*/
 /*After click, apply scrolling handler*/
 recentSection = document.getElementById("main-recent");
-mainSectionContainer = document.getElementsByClassName("main-section-list")[0];
+mainSectionList = document.getElementsByClassName("main-section-list")[0];
 sectionContainer = document.getElementsByClassName("section-container")[0];
 
 //Getting the elements to assign handlers to
@@ -37,8 +37,8 @@ recent.onclick  = function(){
       cliked = true;
     }
     for (var item in class_list)
-        removeClass(mainSectionContainer, class_list[item]);
-    addClass(mainSectionContainer, class_list[0]);   //Our tab focus
+        removeClass(mainSectionList, class_list[item]);
+    addClass(mainSectionList, class_list[0]);   //Our tab focus
 	addClass(sectionContainer, "main-sect-active");  //Our opening sweep
 };
 projects.onclick= function(){
@@ -47,8 +47,8 @@ projects.onclick= function(){
       cliked = true;
     }
     for (var item in class_list)
-        removeClass(mainSectionContainer, class_list[item]);
-    addClass(mainSectionContainer, class_list[1]);   //Our tab focus
+        removeClass(mainSectionList, class_list[item]);
+    addClass(mainSectionList, class_list[1]);   //Our tab focus
 	addClass(sectionContainer, "main-sect-active");  //Our opening sweep
 };
 blog.onclick    = function(){
@@ -57,8 +57,8 @@ blog.onclick    = function(){
       cliked = true;
     }
     for (var item in class_list)
-        removeClass(mainSectionContainer, class_list[item]);
-    addClass(mainSectionContainer, class_list[2]);   //Our tab focus
+        removeClass(mainSectionList, class_list[item]);
+    addClass(mainSectionList, class_list[2]);   //Our tab focus
 	addClass(sectionContainer, "main-sect-active");  //Our opening sweep
 };
 readroll.onclick= function(){
@@ -67,8 +67,8 @@ readroll.onclick= function(){
       cliked = true;
     }
     for (var item in class_list)
-        removeClass(mainSectionContainer, class_list[item]);
-    addClass(mainSectionContainer, class_list[3]);   //Our tab focus
+        removeClass(mainSectionList, class_list[item]);
+    addClass(mainSectionList, class_list[3]);   //Our tab focus
 	addClass(sectionContainer, "main-sect-active");  //Our opening sweep
 };
 
@@ -118,16 +118,17 @@ function contactHandler(){
 }
 
 /*--------Scroll Handler--------*/
-var bottomOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight;
 function startScrolling(){
-  document.addEventListener("wheel" , function(wheel) {
+  document.addEventListener("wheel" , function(wheel){
+    var lengthOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight - document.getElementsByClassName("main-top-right")[0].offsetTop;
     var bottomOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight;
     var marginTop = Number(document.getElementsByClassName("main-top-right")[0].style.marginTop.substring(0,document.getElementsByClassName("main-top-right")[0].style.marginTop.length-2));
     if ((marginTop - wheel.deltaY) > 0){
       document.getElementsByClassName("main-top-right")[0].style.marginTop = "0px"
     }
-    else if (bottomOfPage < (document.documentElement.clientWidth - marginTop)){
-      document.getElementsByClassName("main-top-right")[0].style.marginTop = document.documentElement.clientWidth - bottomOfPage;
+    else if (bottomOfPage - wheel.deltaY < window.innerHeight){
+      document.getElementsByClassName("main-top-right")[0].style.marginTop = String(window.innerHeight - lengthOfPage);
+      console.log(String(window.innerHeight - bottomOfPage) + "what!");
     }
     else {
       document.getElementsByClassName("main-top-right")[0].style.marginTop = String(marginTop - wheel.deltaY) ;
