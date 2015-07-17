@@ -27,30 +27,31 @@ blog        = document.getElementById("main-blog");
 readroll    = document.getElementById("main-readroll");
 
 //The active classes we switch between
-class_list = ["recent-active", "projects-active","blog-active","readroll-active"];
-tab_ele_list   = [recent, projects, blog, readroll];
+classList = ["recent-active", "projects-active","blog-active","readroll-active"];
+tabs = [recent, projects, blog, readroll];
+tabHandlers = [];
 
-//assigning handlers to add classes with psuedoselectors to initiate transtions
+//creates handlers to add classes with psuedoselectors to sectio titles to initiate transtions
 var clicked = false;
 
 function tabHandler(value){
     return function(){
         if (clicked == false){
-          startScrolling();
+          addClass(document.getElementById("child-viewport"),"child-viewport");
           clicked = true;
         }
-        for (var i=0; i<class_list.length; i++) {
-            removeClass(mainSectionList, class_list[i]);
-            addClass(tab_ele_list[i],"tab-passive");
+        for (var i=0; i<classList.length; i++) {
+            removeClass(mainSectionList, classList[i]);
+            addClass(tabs[i],"tab-passive");
         }
-        removeClass(tab_ele_list[value],"tab-passive");
-        addClass(mainSectionList, class_list[value]);   //Our tab focus
-	    addClass(sectionContainer, "main-sect-active");  //Our opening sweep
+        removeClass(tabs[value],"tab-passive");
+        addClass(mainSectionList, classList[value]);   //Our tab focus
+        addClass(sectionContainer, "main-sect-active");  //Our opening sweep
     };
 }
 
-for (var i=0; i<tab_ele_list.length; i++){
-    tab_ele_list[i].onclick=tabHandler(i);
+for (var i=0; i<tabs.length; i++){
+    tabHandlers[i] = tabHandler(i);
 }
 
 /*--------Assigning hadlers to build about and contact pages, and switch between them--------*/
@@ -99,6 +100,10 @@ function contactHandler(){
 
 /*--------Scroll Handler--------*/
 function startScrolling(){
+  document.body.style["overflow-y"] = "scroll";
+}
+/*function startScrolling(){
+  //----------Scroll Wheel Handler---------
   document.addEventListener("wheel" , function(wheel){
     var lengthOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight - document.getElementsByClassName("main-top-right")[0].offsetTop;
     var bottomOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight;
@@ -108,10 +113,69 @@ function startScrolling(){
     }
     else if (bottomOfPage - wheel.deltaY < window.innerHeight){
       document.getElementsByClassName("main-top-right")[0].style.marginTop = String(window.innerHeight - lengthOfPage);
-      console.log(String(window.innerHeight - bottomOfPage) + "what!");
     }
     else {
       document.getElementsByClassName("main-top-right")[0].style.marginTop = String(marginTop - wheel.deltaY) ;
     }
-  })
+  });
+
+  //---------Arrow Key Handler-------
+  document.addEventListener("keydown",function(keydown){
+    if ((keydown.which == 38)||(keydown.which == 40)){
+      if (keydown.which == 38){
+        var amount = -10; 
+      }
+      else{
+        var amount = 10;
+      }
+      var lengthOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight - document.getElementsByClassName("main-top-right")[0].offsetTop;
+      var bottomOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight;
+      var marginTop = Number(document.getElementsByClassName("main-top-right")[0].style.marginTop.substring(0,document.getElementsByClassName("main-top-right")[0].style.marginTop.length-2));
+      if ((marginTop - amount) > 0){
+        document.getElementsByClassName("main-top-right")[0].style.marginTop = "0px"
+      }
+      else if (bottomOfPage - amount < window.innerHeight){
+        document.getElementsByClassName("main-top-right")[0].style.marginTop = String(window.innerHeight - lengthOfPage);
+      }
+      else {
+        document.getElementsByClassName("main-top-right")[0].style.marginTop = String(marginTop - amount) ;
+      }
+    }
+  });
+}*/
+
+
+//Code for rendering html to a div
+function renderHTML(div, htmlString){
+  var parser = new DOMParser();
+  var parsedHtml = parser.parseFromString(htmlString, "text/html");
+  for (var i in parsedHtml.children){
+    div.appendChild(parsedHtml.children[i]);
+  }
 }
+
+document.addEventListener("drag",function(drag){
+  console.log("lolo");
+})
+console.log("this happened");
+
+
+recent.onclick = function(){
+  tabHandlers[0]();
+} 
+
+projects.onclick = function() {
+  tabHandlers[1]();
+
+}
+
+blog.onclick = function() {
+  tabHandlers[2]();
+
+}
+
+readroll.onclick = function(){
+  tabHandlers[3]();
+
+}
+
