@@ -169,3 +169,8 @@ Functionality is implimented in javascript*/
 .readroll-active:read-only{
 	margin: 1vh auto 0 calc(48vw - 9.5vw - 57vw);
 }
+
+/*For tab elements when not being the selected one*/
+.tab-passive{
+    opacity: 0.5;
+}
