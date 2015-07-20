@@ -15,6 +15,11 @@
 	src: url(OpenSans-Light.ttf);
 }
 
+@font-face{
+	font-family: OpenSansRegular;
+	src: url(OpenSans-Regular.ttf);
+}
+
 /* ---Styles for main page---*/
 body {
 	background-image: url("backround.jpg");
@@ -24,6 +29,7 @@ body {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 /* Classes */
@@ -35,6 +41,11 @@ body {
 	font-family: OpenSansLight;
 	letter-spacing: -0.015em;
 	font-size: 3vmin;
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
 }
 
 .main-top-right li{
@@ -64,12 +75,19 @@ body {
 
 	text-align: justify;
 
+	cursor: default;
+
 	/*font definition*/
 	font-family: OpenSansBold;
 	font-size: 5vmin;
 	-webkit-text-stroke: 1px black;
 
 	-webkit-transition: margin 1s;
+
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /*Utter hax to evenly space items in main-section-list
@@ -84,6 +102,7 @@ http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-na
 	display: inline-block;
 	margin: 0 auto;
 	cursor: pointer;
+
 }
 
 
@@ -127,20 +146,22 @@ http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-na
 
 /*Container that holds page content*/
 .section-container{
+	position: relative;
 	width: 100%;
 	height: 100%;
 	margin: 5vh 0 0 0;
-	background: white;
+	padding: 0;
+	background: rgba(255,255,255,0.9);
 	border-style: solid;
 	border-width: 2px 0 0 0;
-	border-color: gray;
-	opacity: 0.9;
+	border-color: rgba(128,128,128,0.9);
 	-webkit-transisitions: margin 1s;
 }
 
+
 /*Container for holding the about or contact page*/
 .about-contact-page{
-	background: white;
+	background: white;;
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -177,10 +198,12 @@ Functionality is implimented in javascript*/
     opacity: 0.3;
 }
 
+/*Trick to remove scroll bar*/
 .parent-viewport{
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
+	/*visibility: hidden;*/
 }
 
 .child-viewport{
@@ -190,4 +213,64 @@ Functionality is implimented in javascript*/
 	overflow-x: hidden;
 	padding-right: 15px;
 	padding-bottom: 15px;
+}
+
+.project-list{
+	display: table-cell;
+	margin: 0;
+	padding: 0;
+    text-align: center;
+    width: 100vw;
+    height: auto;
+
+}
+
+.project{
+	width: 85vmin;
+	height: auto;
+	/*width: 120vh;*/
+	margin: 3vw auto 0 10vmin;
+	/*margin: 0;*/ /*definetly should not be 0*/
+	display: inline-block;
+	text-align: center;
+	cursor: pointer;
+}
+
+.project-image{
+	float: left;
+	font-size: 23vmin;
+	height: 30vmin;
+	width: 30vmin;
+	font-family: HarowSoildItalic;
+	text-align: left;
+	pointer-events: none;
+	color: #cccccc;
+	-webkit-text-stroke: 1px black;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.project-active{
+	margin: 0 auto;
+}
+
+.project-name{
+	font-family: OpenSansRegular;
+	margin-top: calc(15vmin - 0.5em);
+	margin-left: calc(30vmin + 10vw);
+	font-size: 6vmin;
+	text-align: left;
+	text-shadow: 1px 1px 1px #666653;
+}
+
+.project:hover{
+	background: radial-gradient(rgba(72,72,59,0.5) 0%, rgba(72,72,59,0.5) 0%, rgba(0,0,0,0) 65%, rgba(0,0,0,0) 100%);
+	/*background: linear-gradient(60%,55%,closest-side,rgba(0,0,0,0),rgba(102,102,83,0.9),rgba(0,0,0,0));
+	*/
+}
+
+.filled{
+	height: auto;
 }

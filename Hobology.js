@@ -96,85 +96,46 @@ function contactHandler(){
     }
     contactPage.appendChild(contactMainTopRight);
     contactPage.children.namedItem("main-top-right").children.namedItem("main-contact").className += "main-selected-about-contact";
+
 }
-
-/*--------Scroll Handler--------*/
-function startScrolling(){
-  document.body.style["overflow-y"] = "scroll";
-}
-/*function startScrolling(){
-  //----------Scroll Wheel Handler---------
-  document.addEventListener("wheel" , function(wheel){
-    var lengthOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight - document.getElementsByClassName("main-top-right")[0].offsetTop;
-    var bottomOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight;
-    var marginTop = Number(document.getElementsByClassName("main-top-right")[0].style.marginTop.substring(0,document.getElementsByClassName("main-top-right")[0].style.marginTop.length-2));
-    if ((marginTop - wheel.deltaY) > 0){
-      document.getElementsByClassName("main-top-right")[0].style.marginTop = "0px"
-    }
-    else if (bottomOfPage - wheel.deltaY < window.innerHeight){
-      document.getElementsByClassName("main-top-right")[0].style.marginTop = String(window.innerHeight - lengthOfPage);
-    }
-    else {
-      document.getElementsByClassName("main-top-right")[0].style.marginTop = String(marginTop - wheel.deltaY) ;
-    }
-  });
-
-  //---------Arrow Key Handler-------
-  document.addEventListener("keydown",function(keydown){
-    if ((keydown.which == 38)||(keydown.which == 40)){
-      if (keydown.which == 38){
-        var amount = -10; 
-      }
-      else{
-        var amount = 10;
-      }
-      var lengthOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight - document.getElementsByClassName("main-top-right")[0].offsetTop;
-      var bottomOfPage = sectionContainer.offsetTop + sectionContainer.offsetHeight;
-      var marginTop = Number(document.getElementsByClassName("main-top-right")[0].style.marginTop.substring(0,document.getElementsByClassName("main-top-right")[0].style.marginTop.length-2));
-      if ((marginTop - amount) > 0){
-        document.getElementsByClassName("main-top-right")[0].style.marginTop = "0px"
-      }
-      else if (bottomOfPage - amount < window.innerHeight){
-        document.getElementsByClassName("main-top-right")[0].style.marginTop = String(window.innerHeight - lengthOfPage);
-      }
-      else {
-        document.getElementsByClassName("main-top-right")[0].style.marginTop = String(marginTop - amount) ;
-      }
-    }
-  });
-}*/
-
 
 //Code for rendering html to a div
 function renderHTML(div, htmlString){
   var parser = new DOMParser();
   var parsedHtml = parser.parseFromString(htmlString, "text/html");
-  for (var i in parsedHtml.children){
-    div.appendChild(parsedHtml.children[i]);
+  for (var i = 0; i < parsedHtml.body.children.length; i++){
+    div.appendChild(parsedHtml.body.children[i]);
   }
 }
 
-document.addEventListener("drag",function(drag){
-  console.log("lolo");
-})
-console.log("this happened");
+var sectionContainerCopy = sectionContainer.cloneNode();
 
+function clearSectionContainer(){
+  sectionContainer.remove();
+  sectionContainer = sectionContainerCopy.cloneNode();
+  document.getElementById("child-viewport").appendChild(sectionContainer);
+}
 
 recent.onclick = function(){
+  clearSectionContainer();
   tabHandlers[0]();
 } 
 
 projects.onclick = function() {
+  clearSectionContainer();
   tabHandlers[1]();
-
+  renderHTML(sectionContainer,
+    '<ul class="project-list"><li class="project"><img class="project-image" src="3Dmonkey.png"></img><div class="project-name">3D Rendering</div></li><li class="project"><div class="project-image">H</div><div class="project-name">Hobology.com</div></li></ul>');
 }
 
 blog.onclick = function() {
+  clearSectionContainer();
   tabHandlers[2]();
 
 }
 
 readroll.onclick = function(){
+  clearSectionContainer()
   tabHandlers[3]();
 
 }
