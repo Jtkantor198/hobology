@@ -120,6 +120,7 @@ function renderHTML(div, htmlString){
 
 var sectionContainerCopy = sectionContainer.cloneNode();
 
+<<<<<<< HEAD
 function clearSectionContainer(){
   sectionContainer.remove();
   sectionContainer = sectionContainerCopy.cloneNode();
@@ -143,12 +144,32 @@ projects.onclick = function() {
 blog.onclick = function() {
   clearSectionContainer();
   tabHandlers[2]();
+=======
+function onclickHandler(){
+}
+
+recent.onclick = function(){
+    
+    tabHandlers[0]();
+} 
+
+projects.onclick = function() {
+    tabHandlers[1]();
+}
+
+blog.onclick = function() {
+    tabHandlers[2]();
+>>>>>>> readroll_supreme
 
 }
 
 readroll.onclick = function(){
+<<<<<<< HEAD
   clearSectionContainer()
   tabHandlers[3]();
+=======
+    tabHandlers[3]();
+>>>>>>> readroll_supreme
 
 }
 

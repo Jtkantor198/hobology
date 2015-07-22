@@ -1,3 +1,20 @@
+/*---HTML Default Overrides--*/
+a:link{
+    text-decoration: none;
+    color: #303030;
+}
+a:visited{
+    text-decoration: none;
+    color: #303030;
+}
+a:hover{
+    text-decoration: underline;
+    color: #303030;
+}
+a{
+    text-decoration: underline;
+    color: #303030;
+}
 /*---Load fonts---*/
 @font-face{
 	/*Font for title*/
@@ -8,6 +25,11 @@
 @font-face{
 	font-family: OpenSansBold;
 	src: url(OpenSans-Bold.ttf);
+}
+
+@font-face{
+	font-family: OpenSansRegular;
+	src: url(OpenSans-Regular.ttf);
 }
 
 @font-face{
@@ -36,7 +58,6 @@ body {
 .main-top-right{
 	color: #cccccc;
 	margin: 0 auto;
-
 	/*font definition*/
 	font-family: OpenSansLight;
 	letter-spacing: -0.015em;
@@ -237,6 +258,7 @@ Functionality is implimented in javascript*/
 	padding-right: 15px;
 	padding-bottom: 15px;
 }
+<<<<<<< HEAD
 
 .project-list{
 	display: table-cell;
@@ -447,4 +469,117 @@ input:focus{
     border-bottom: 1px solid black; 
     border-collapse:separate;
     border-spacing:5px 5px;
+=======
+.readroll-container{
+    display:block;
+    margin: 0 auto 0 auto;
+    padding: 0;
+}
+
+.matrix{
+    position: relative;
+	font-family: "Times New Roman";
+    font-weight: 400;
+    font-size: 13px;
+}
+.matrix:before, .matrix:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    border: 1px solid #000;
+    width: 6px;
+    height: 100%;
+}
+.matrix:before {
+    left: -6px;
+    border-right: 0px;
+}
+.matrix:after {
+    right: -6px;
+    border-left: 0px;
+}
+.matrix td {
+    height: 10vh;
+    width: 10vw;
+    padding: 5px;    
+    text-align: left;
+}
+.val_matrix{
+    position: relative;
+    font-size: 30px;
+}
+.val_matrix:before, .val_matrix:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    border: 1px solid #000;
+    width: 6px;
+    height: 100%;
+}
+.val_matrix:before {
+    left: -6px;
+    border-right: 0px;
+}
+.val_matrix:after {
+    right: -6px;
+    border-left: 0px;
+}
+.val_matrix td {
+    font-family: OpenSansLight;
+    height: 7vh;
+    width: 10vw;
+    padding: 5px;    
+    text-align: center;
+}
+.val_matrix tr {
+    font-family: OpenSansLight;
+    text-align: center;
+}
+.matrix tr {
+    height: 8vh;
+    padding: 5px;    
+    text-align: left;
+}
+.equal_sign{
+    margin: 0 2vw 2vh 2vw;
+    width: 6px;
+    border-top: 1px;
+    border-bottom: 1px;
+    font-size: 17px;
+}
+.mat_descriptor{
+    font-family: OpenSansLight;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+}
+.mat_descriptor td{
+    height: 1vh; 
+    width: 10vw;
+    padding: 5px;    
+    text-align: center;
+    vertical-align: text-bottom;
+}
+.mat_descriptor tr{
+    height: 1vh; 
+    padding: 5px;    
+    text-align: center;
+    vertical-align: text-bottom;
+}
+.mat_descriptor:before, .mat_descriptor:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    border: 1px #000;
+    width: 6px;
+    height: 100%;
+}
+.mat_descriptor:before {
+    left: -6px;
+    border-right: 0px;
+}
+.mat_descriptor:after {
+    right: -6px;
+    border-left: 0px;
+>>>>>>> readroll_supreme
 }
