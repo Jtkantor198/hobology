@@ -213,9 +213,7 @@ Functionality is implimented in javascript*/
 	padding-bottom: 15px;
 }
 .readroll-container{
-    display:block;
     margin: 0 auto 0 auto;
-    padding: 0;
 }
 
 .matrix{
@@ -223,28 +221,6 @@ Functionality is implimented in javascript*/
 	font-family: "Times New Roman";
     font-weight: 400;
     font-size: 13px;
-}
-.matrix:before, .matrix:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    border: 1px solid #000;
-    width: 6px;
-    height: 100%;
-}
-.matrix:before {
-    left: -6px;
-    border-right: 0px;
-}
-.matrix:after {
-    right: -6px;
-    border-left: 0px;
-}
-.matrix td {
-    height: 10vh;
-    width: 10vw;
-    padding: 5px;    
-    text-align: left;
 }
 .val_matrix{
     position: relative;
@@ -268,17 +244,41 @@ Functionality is implimented in javascript*/
 }
 .val_matrix td {
     font-family: OpenSansLight;
-    height: 7vh;
-    width: 10vw;
+    height: 68px;
+    width:55px;
     padding: 5px;    
     text-align: center;
 }
+.matrix:before, .matrix:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    border: 1px solid #000;
+    width: 6px;
+    height: 100%;
+}
+.matrix:before {
+    left: -6px;
+    border-right: 0px;
+}
+.matrix:after {
+    right: -6px;
+    border-left: 0px;
+}
+.matrix td {
+    height: 68px;
+    padding: 5px;    
+    text-align: left;
+}
 .val_matrix tr {
     font-family: OpenSansLight;
+    height: 68px;
+    width:55px;
+    padding: 5px;    
     text-align: center;
 }
 .matrix tr {
-    height: 8vh;
+    height: 68px;
     padding: 5px;    
     text-align: left;
 }
@@ -293,34 +293,17 @@ Functionality is implimented in javascript*/
     font-family: OpenSansLight;
     font-size: 13px;
     font-style: italic;
+    vertical-align: text-bottom;
     text-align: center;
+    /*text-decoration: underline;*/
+    /*border-bottom: 1px solid black;*/
 }
+
 .mat_descriptor td{
-    height: 1vh; 
-    width: 10vw;
-    padding: 5px;    
+    width: 45px;
+    margin: 0 0 0 15px;
     text-align: center;
-    vertical-align: text-bottom;
 }
-.mat_descriptor tr{
-    height: 1vh; 
-    padding: 5px;    
-    text-align: center;
-    vertical-align: text-bottom;
-}
-.mat_descriptor:before, .mat_descriptor:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    border: 1px #000;
-    width: 6px;
-    height: 100%;
-}
-.mat_descriptor:before {
-    left: -6px;
-    border-right: 0px;
-}
-.mat_descriptor:after {
-    right: -6px;
-    border-left: 0px;
+br{
+    font-size: 1px;
 }

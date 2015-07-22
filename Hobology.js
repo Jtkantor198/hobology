@@ -159,23 +159,25 @@ document.addEventListener("drag",function(drag){
 })
 console.log("this happened");
 
+function onclickHandler(){
+}
 
 recent.onclick = function(){
-  tabHandlers[0]();
+    
+    tabHandlers[0]();
 } 
 
 projects.onclick = function() {
-  tabHandlers[1]();
-
+    tabHandlers[1]();
 }
 
 blog.onclick = function() {
-  tabHandlers[2]();
+    tabHandlers[2]();
 
 }
 
 readroll.onclick = function(){
-  tabHandlers[3]();
+    tabHandlers[3]();
 
 }
 
