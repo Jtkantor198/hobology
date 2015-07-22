@@ -61,15 +61,20 @@ document.getElementById("main-about").onclick = aboutHandler;
 function aboutHandler(){
     var aboutPage = document.createElement("div");
     aboutPage.className = "about-contact-page";
+    var aboutPageBackround = document.createElement("div");
+    aboutPageBackround.className = "about-contact-page-backround";
     aboutPage.id = "active-about-page";
+    document.body.appendChild(aboutPageBackround);
     document.body.appendChild(aboutPage);
     var aboutPage = document.getElementById("active-about-page");
     var aboutMainTopRight = mainTopRight.cloneNode(true);
     aboutMainTopRight.id = "main-top-right";
     aboutMainTopRight.children.namedItem("main-about").onclick = function(){
+      document.body.removeChild(document.getElementsByClassName("about-contact-page-backround")[0]);
       document.body.removeChild(document.getElementById("active-about-page"));
     }
     aboutMainTopRight.children.namedItem("main-contact").onclick = function(){
+      document.body.removeChild(document.getElementsByClassName("about-contact-page-backround")[0]);
       document.body.removeChild(document.getElementById("active-about-page"));
       contactHandler();
     }
@@ -82,15 +87,20 @@ document.getElementById("main-contact").onclick = contactHandler;
 function contactHandler(){
     var contactPage = document.createElement("div");
     contactPage.className = "about-contact-page";
+    var aboutPageBackround = document.createElement("div");
+    aboutPageBackround.className = "about-contact-page-backround";
     contactPage.id = "active-contact-page";
+    document.body.appendChild(aboutPageBackround);
     document.body.appendChild(contactPage);
     var contactPage = document.getElementById("active-contact-page");
     var contactMainTopRight = mainTopRight.cloneNode(true);
     contactMainTopRight.id = "main-top-right";
     contactMainTopRight.children.namedItem("main-contact").onclick = function(){
+      document.body.removeChild(document.getElementsByClassName("about-contact-page-backround")[0]);
       document.body.removeChild(document.getElementById("active-contact-page"));
     }
     contactMainTopRight.children.namedItem("main-about").onclick = function(){
+      document.body.removeChild(document.getElementsByClassName("about-contact-page-backround")[0]);
       document.body.removeChild(document.getElementById("active-contact-page"));
       aboutHandler();
     }
@@ -117,7 +127,7 @@ function clearSectionContainer(){
 }
 
 recent.onclick = function(){
-  clearSectionContainer();
+  /*clearSectionContainer();*/
   tabHandlers[0]();
 } 
 
@@ -126,6 +136,8 @@ projects.onclick = function() {
   tabHandlers[1]();
   renderHTML(sectionContainer,
     '<ul class="project-list"><li class="project"><img class="project-image" src="3Dmonkey.png"></img><div class="project-name">3D Rendering</div></li><li class="project"><div class="project-image">H</div><div class="project-name">Hobology.com</div></li></ul>');
+  /*var stateObj = {};
+  history.pushState(stateObj, "projects page", "/Projects");*/
 }
 
 blog.onclick = function() {
@@ -139,4 +151,21 @@ readroll.onclick = function(){
   tabHandlers[3]();
 
 }
+
+
+for (var i=0; i < document.getElementsByClassName("blog-post").length;i++){
+  console.log(i);
+  var boxHeight = document.getElementsByClassName("blog-post")[i].children[0].offsetHeight;
+  document.getElementsByClassName("blog-post")[i].children[1].style.height = String(0.6*boxHeight) + "px";
+  document.getElementsByClassName("blog-post")[i].children[1].style["margin-top"] = String(0.3*boxHeight) + "px";
+  document.getElementsByClassName("blog-post")[i].children[1].style["width"] = String(0.3*boxHeight) + "px";
+}
+window.onresize = function(){
+  for (var i=0; i < document.getElementsByClassName("blog-post").length;i++){
+    console.log(i);
+    document.getElementsByClassName("blog-post")[i].children[1].style.height = String(document.getElementsByClassName("blog-post")[i].children[0].offsetHeight) + "px";
+  }
+}
+
+
 

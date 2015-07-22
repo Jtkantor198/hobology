@@ -51,6 +51,7 @@ body {
 .main-top-right li{
 	float: right;
 	cursor: pointer;
+	display: inline-block;
 	margin: 0.5em 1em 0 0; /*creates spacing between about and contact*/
 }
 
@@ -80,6 +81,9 @@ body {
 	/*font definition*/
 	font-family: OpenSansBold;
 	font-size: 5vmin;
+	/* firefox support*/
+	/*text-shadow: 1px 1px 1px black, -1px -1px 1px black, 1px -1px 1px black,
+            -1px 1px 1px black;*/
 	-webkit-text-stroke: 1px black;
 
 	-webkit-transition: margin 1s;
@@ -88,6 +92,7 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+	transition: margin 1s;
 }
 
 /*Utter hax to evenly space items in main-section-list
@@ -102,7 +107,6 @@ http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-na
 	display: inline-block;
 	margin: 0 auto;
 	cursor: pointer;
-
 }
 
 
@@ -126,6 +130,9 @@ http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-na
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    /*firefox support issue - text-stroke*/
+    /*text-shadow: 1px 1px 0px black, -1px -1px 0px black, 1px -1px 0px black,
+            -1px 1px 0px black;*/
 }
 
 #main-recent{
@@ -155,13 +162,27 @@ http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-na
 	border-style: solid;
 	border-width: 2px 0 0 0;
 	border-color: rgba(128,128,128,0.9);
-	-webkit-transisitions: margin 1s;
+	-webkit-transition: margin 1s;
+	transition: margin 1s;
 }
 
 
 /*Container for holding the about or contact page*/
+.about-contact-page-backround{
+	background: url("backround.jpg");
+	background-size: 100% 100vh;
+	background-attachment: fixed;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100vh;
+}
+
 .about-contact-page{
-	background: white;;
+	background: rgba(255,255,255,0.9);
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -173,24 +194,26 @@ http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-na
 
 /*Classes for transitioning each section title to center when selected.
 Functionality is implimented in javascript*/
-.main-sect-active:read-only{
+
+.main-sect-active:not(.hax){
 	margin: 0vh 0 0 0;
 }
 
-.recent-active:read-only{
-	margin: 1vh auto 0 calc(53vw - 9.5vw);
+.recent-active:not(.hax){
+	/*margin: 1vh 0 0 calc(53vw - 9.5vw);*/
+	margin: 1vh 0 0 calc(50vw - 1.6em);
 }
 
-.projects-active:read-only{
-	margin: 1vh auto 0 calc(51vw - 9.5vw - 19vw);
+.projects-active:not(.hax){
+	margin: 1vh 0 0 calc(50vw - 24vw - 0.85em);
 }
 
-.blog-active:read-only{
-	margin: 1vh auto 0 calc(50vw - 9.5vw - 38vw);
+.blog-active:not(.hax){
+	margin: 1vh 0 0 calc(50vw - 9.7vw - 38vw);
 }
 
-.readroll-active:read-only{
-	margin: 1vh auto 0 calc(48vw - 9.5vw - 57vw);
+.readroll-active:not(.hax){
+	margin: 1vh 0 0 calc(50vw - 60vw);
 }
 
 /*For tab elements when not being the selected one*/
@@ -229,7 +252,7 @@ Functionality is implimented in javascript*/
 	width: 85vmin;
 	height: auto;
 	/*width: 120vh;*/
-	margin: 3vw auto 0 10vmin;
+	margin: 3vw 10vw 0 10vmin;
 	/*margin: 0;*/ /*definetly should not be 0*/
 	display: inline-block;
 	text-align: center;
@@ -273,4 +296,155 @@ Functionality is implimented in javascript*/
 
 .filled{
 	height: auto;
+}
+
+.recent-filters{
+	margin: 0 auto;
+	padding: 0;
+	text-align: justify;
+	width: 93%;
+	cursor: default;
+
+}
+
+.recent-filters:after{
+	content: '';
+	display: inline-block;
+	width: 100%;
+}
+
+
+.recent-filters li{
+	border: 0;
+	padding: 0;
+	display: inline-block;
+
+}
+
+/*firefox support issue - increase text opacity*/
+.recent-filters li form input{
+	border: 0;
+	text-align: center;
+	font-family: OpenSansLight;
+	font-size: 2.5vmin;
+	color: rgba(255,255,255,0.9);
+	line-height: 5.5vmin;
+	vertical-align: center;
+	display: inline-block;
+	margin: 2.5vmin auto 1vmin auto;
+	cursor: text;
+	height: 5.5vmin;
+	width: 20vw;
+	background: rgba(153,153,153,0.6);
+	border-radius: 3vmin;
+}
+
+input:focus{
+	outline: 0;
+}
+
+::-webkit-input-placeholder {
+   color: rgba(255,255,255,0.9);
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: rgba(255,255,255,0.9);  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: rgba(255,255,255,0.9);  
+}
+
+:-ms-input-placeholder {  
+   color: rgba(255,255,255,0.9);  
+}
+
+[placeholder]:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.recent-items{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	/*text-align: center;*/
+}
+
+.recent-items li{
+	margin: 2vmin;
+	height: -moz-min-content;
+	display: flex;
+}
+
+.blog-post{
+	width: 100%;
+	font-family: OpenSansLight;
+	font-size: 1.75vmin;
+	margin: 0;
+	padding: 0;
+}
+
+.blog-post-info{
+	text-align: center;
+	width: 40vmin;
+	padding: 0;
+	margin: 0 5vmin;
+	float: left;
+	font-size: 2.5vmin;
+}
+
+.blog-title{
+	font-size: 3.75vmin;
+}
+
+.blog-date{
+	font-size: calc(.75*3.75vmin);
+}
+
+.blog-author{
+	font-size: calc(.5*3.75vmin);
+
+}
+
+.blog-tags{
+	font-size: calc(.4*3.75vmin);
+}
+
+.blog-text{
+	padding: 0;
+	margin: 0 5vmin 0 0;
+	text-indent: 3em;
+	overflow: hidden;
+}
+
+.recent-readroll-post{
+	font-family: OpenSansLight;
+}
+
+.recent-readroll-title{
+	text-align: center;
+	width: 40vmin;
+	font-size: 3.75vmin;
+	height: 3.75vmin;
+	margin: 0 5vmin;
+	padding: 7.5vmin 0;
+	float: left;
+}
+
+.recent-readroll-ratings{
+	margin: 0 5vmin 0 40vmin;
+	padding: 2em 0 0 0;
+	width: 62.5vw;
+	height: 16vmin;
+	text-align: center;
+	font-size: 1.75vmin;
+}
+
+.recent-readroll-ratings {border:0; border-collapse:separate; border-spacing:0  5px;}
+.recent-readroll-ratings th{
+	font-style: normal;
+	font-weight: normal;
+    border-bottom: 1px solid black; 
+    border-collapse:separate;
+    border-spacing:5px 5px;
 }
