@@ -166,6 +166,10 @@ http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-na
 	transition: margin 1s;
 }
 
+.section-container p{
+    display: inline-block;
+}
+
 
 /*Container for holding the about or contact page*/
 .about-contact-page-backround{
@@ -395,11 +399,28 @@ input:focus{
 	padding: 0;
 }
 
+.blog-post-full{
+	width: 100%;
+	font-family: OpenSansLight;
+	font-size: 1.75vmin;
+    /*display: inline-block;*/
+    float: left;
+}
+
 .blog-post-info{
 	text-align: center;
 	width: 40vmin;
 	padding: 0;
-	margin: 0 5vmin;
+	margin: 0 1vmin;
+	float: left;
+	font-size: 2.5vmin;
+}
+
+.blog-post-info-full{
+	text-align: center;
+	width: 40vmin;
+	padding: 0;
+	margin: 0 1vmin;
 	float: left;
 	font-size: 2.5vmin;
 }
@@ -443,9 +464,10 @@ input:focus{
 }
 
 .recent-readroll-ratings{
+    table-layout: fixed;
 	margin: 0 5vmin 0 40vmin;
-	padding: 2em 0 0 0;
-	width: 62.5vw;
+	padding: 0;
+	width: 25vw;
 	height: 16vmin;
 	text-align: center;
 	font-size: 1.75vmin;
@@ -464,7 +486,6 @@ input:focus{
     margin: 0 auto 0 auto;
     padding: 0;
 }
-
 .matrix{
     position: relative;
 	font-family: "Times New Roman";
