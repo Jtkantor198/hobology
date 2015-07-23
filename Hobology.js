@@ -54,6 +54,8 @@ for (var i=0; i<tabs.length; i++){
     tabHandlers[i] = tabHandler(i);
 }
 
+var aboutContent='<div class="about-title">Hobology</div><div class="about-content"><p>During the summer of 2015, Sergei and I decided to work on a few devolpment projects. Among those was designing and building a website for us to  share ideas and present the projects we were working on.</p><p>We  attempted to use Bootstrap by editing their Sass. But the more we worked the more we realized our limited, child-like attempts to customize the framework to our needs weren’t working. This website was built with raw html, css, and javascript. No preprocessors, no frameworks, no libraries. It was build as a demonstration that frameworks, although helpful for speed and clarity, can hamper creativity and cause reliance. Now that we’re much better at building websites we’ll likely use more CSS frameworks in the future. And we’ll definitely be using preproessors.</p><p>When we built this we were not actually homeless. We were renting a room from a friend in Lancaster, PA. I had just graduated college as had many of my friends, and among fears of unemployment we often joked of becoming hobo’s. During the summer we devolped a comformtable lifestyle. Making all our own meals, taking lots of walks in the local parks, and studying whatever we felt like between our coding sessions. (Mostly differential equations for me. Sergei was often working on online classes.) We called this lifestyle Hobology.</p><p>If the website’s name seems off-putting, perhaps too unprofessional, too devoid of terms like “enterprise-driven” then you’re also part of the reason this website is called Hobology.</p></div>';
+
 /*--------Assigning hadlers to build about and contact pages, and switch between them--------*/
 var mainTopRight = document.getElementsByClassName("main-top-right")[0];
 document.getElementById("main-about").onclick = aboutHandler;
@@ -69,16 +71,17 @@ function aboutHandler(){
     var aboutPage = document.getElementById("active-about-page");
     var aboutMainTopRight = mainTopRight.cloneNode(true);
     aboutMainTopRight.id = "main-top-right";
-    aboutMainTopRight.children.namedItem("main-about").onclick = function(){
+    aboutPage.appendChild(aboutMainTopRight);
+    renderHTML(aboutPage, aboutContent);
+    aboutPage.children[0].children.namedItem("main-about").onclick = function(){
       document.body.removeChild(document.getElementsByClassName("about-contact-page-backround")[0]);
       document.body.removeChild(document.getElementById("active-about-page"));
     }
-    aboutMainTopRight.children.namedItem("main-contact").onclick = function(){
+    aboutPage.children[0].children.namedItem("main-contact").onclick = function(){
       document.body.removeChild(document.getElementsByClassName("about-contact-page-backround")[0]);
       document.body.removeChild(document.getElementById("active-about-page"));
       contactHandler();
     }
-    aboutPage.appendChild(aboutMainTopRight);
     aboutPage.children.namedItem("main-top-right").children.namedItem("main-about").className += "main-selected-about-contact";
 }
 
@@ -106,16 +109,13 @@ function contactHandler(){
     }
     contactPage.appendChild(contactMainTopRight);
     contactPage.children.namedItem("main-top-right").children.namedItem("main-contact").className += "main-selected-about-contact";
-
 }
 
 //Code for rendering html to a div
 function renderHTML(div, htmlString){
   var parser = new DOMParser();
   var parsedHtml = parser.parseFromString(htmlString, "text/html");
-  for (var i = 0; i < parsedHtml.body.children.length; i++){
-    div.appendChild(parsedHtml.body.children[i]);
-  }
+  div.innerHTML += parsedHtml.body.innerHTML;
 }
 
 var sectionContainerCopy = sectionContainer.cloneNode();
@@ -130,7 +130,7 @@ function clearSectionContainer(){
 recent.onclick = function(){
   /*clearSectionContainer();*/
   tabHandlers[0]();
-} 
+}
 
 projects.onclick = function() {
   clearSectionContainer();
@@ -173,20 +173,46 @@ readroll.onclick = function(){
 
 }
 
-
-for (var i=0; i < document.getElementsByClassName("blog-post").length;i++){
-  console.log(i);
-  var boxHeight = document.getElementsByClassName("blog-post")[i].children[0].offsetHeight;
-  document.getElementsByClassName("blog-post")[i].children[1].style.height = String(0.6*boxHeight) + "px";
-  document.getElementsByClassName("blog-post")[i].children[1].style["margin-top"] = String(0.3*boxHeight) + "px";
-  document.getElementsByClassName("blog-post")[i].children[1].style["width"] = String(0.3*boxHeight) + "px";
-}
-window.onresize = function(){
-  for (var i=0; i < document.getElementsByClassName("blog-post").length;i++){
-    console.log(i);
-    document.getElementsByClassName("blog-post")[i].children[1].style.height = String(document.getElementsByClassName("blog-post")[i].children[0].offsetHeight) + "px";
+function resizeContent(className){
+  for (var i=0; i < document.getElementsByClassName(className).length;i++){
+    var boxHeight = document.getElementsByClassName(className)[i].children[0].offsetHeight;
+    document.getElementsByClassName(className)[i].children[1].style.height = String(0.9*boxHeight) + "px";
+    document.getElementsByClassName(className)[i].children[1].style["margin-top"] = String(0.005*boxHeight) + "px";
   }
 }
 
+resizeContent("blog-post");
+resizeContent("recent-readroll-post");
+fixTheProblem();
 
 
+window.onresize = function(){
+  resizeContent();
+  fixTheProblem();
+}
+
+
+function ellipseText(div){
+    var i = 0;
+    while(div.childNodes[i].getBoundingClientRect().bottom < div.getBoundingClientRect().bottom){
+        if ((typeof div.children[i].completeText) != "undefined"){
+          div.children[i].innerText = div.children[i].completeText;
+        }
+        i++;
+    }
+    //i is now the paragraph that intersects
+    var psize   = div.getBoundingClientRect().bottom - div.childNodes[i].getBoundingClientRect().top;
+    var pheight = div.childNodes[i].getBoundingClientRect().bottom - div.childNodes[i].getBoundingClientRect().top;
+    var fontsize= Number(window.getComputedStyle(div.childNodes[i]).fontSize.substring(0,(window.getComputedStyle(div.childNodes[i]).fontSize.length - 2)));
+    var allowedCharacters = Math.floor(div.childNodes[i].innerText.length*Math.floor((psize*0.7)/fontsize)/Math.floor(pheight/fontsize));
+    if ((typeof div.children[i].completeText) == "undefined"){
+      div.children[i].completeText = div.children[i].innerText;
+    }
+    div.children[i].innerText = div.children[i].completeText.substring(0,allowedCharacters-4) + '...';
+};
+
+function fixTheProblem(){
+  for (var i=0; i < document.getElementsByClassName("blog-post").length;i++){
+    ellipseText(document.getElementsByClassName("blog-post")[i].children[1]);
+  }
+}

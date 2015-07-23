@@ -58,6 +58,7 @@ body {
 .main-top-right{
 	color: #cccccc;
 	margin: 0 auto;
+
 	/*font definition*/
 	font-family: OpenSansLight;
 	letter-spacing: -0.015em;
@@ -207,6 +208,8 @@ http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-na
 }
 
 .about-contact-page{
+	font-family: OpenSansLight;
+	font-weight: 500;
 	background: rgba(255,255,255,0.9);
 	position: absolute;
 	top: 0;
@@ -262,7 +265,6 @@ Functionality is implimented in javascript*/
 	padding-right: 15px;
 	padding-bottom: 15px;
 }
-<<<<<<< HEAD
 
 .project-list{
 	display: table-cell;
@@ -321,12 +323,7 @@ Functionality is implimented in javascript*/
 }
 
 .project:hover{
-    color: #555;
-    /*
-    background-color: gray;
-    */
-	/*background: radial-gradient(rgba(42,42,39,0.5) 0%, rgba(42,42,39,0.5) 0%, rgba(0,0,0,0) 75%, rgba(0,0,0,0) 75%);*/
-    
+	background: radial-gradient(rgba(72,72,59,0.5) 0%, rgba(72,72,59,0.5) 0%, rgba(0,0,0,0) 65%, rgba(0,0,0,0) 100%);
 	/*background: linear-gradient(60%,55%,closest-side,rgba(0,0,0,0),rgba(102,102,83,0.9),rgba(0,0,0,0));
 	*/
 }
@@ -408,8 +405,9 @@ input:focus{
 }
 
 .recent-items li{
-	margin: 2vmin;
+	margin: 2vmin 2vmin 4vmin 2vmin;
 	height: -moz-min-content;
+	width: 100vw;
 	display: flex;
 }
 
@@ -433,9 +431,7 @@ input:focus{
 	text-align: center;
 	width: 40vmin;
 	padding: 0;
-	margin: 0 1vmin;
-	float: left;
-	font-size: 2.5vmin;
+	margin: 0 5vmin;
 }
 
 .blog-post-info-full{
@@ -467,9 +463,11 @@ input:focus{
 
 .blog-text{
 	padding: 0;
+	width: calc(95% - 50vmin);
 	margin: 0 5vmin 0 0;
 	text-indent: 3em;
 	overflow: hidden;
+	position: relative;
 }
 
 .blog-text-full{
@@ -484,19 +482,15 @@ input:focus{
 	text-align: center;
 	width: 40vmin;
 	font-size: 3.75vmin;
-	height: 3.75vmin;
 	margin: 0 5vmin;
-	padding: 7.5vmin 0;
 	float: left;
 }
 
 .recent-readroll-ratings{
     table-layout: fixed;
-	margin: 0 5vmin 0 40vmin;
-	padding: 0;
-	width: 25vw;
-	height: 16vmin;
 	text-align: center;
+	width: 50vw;
+	/*margin: 0 calc((100vw - 1vmin - 50vmin - 50vw)/2);*/
 	font-size: 1.75vmin;
 }
 
@@ -731,4 +725,29 @@ input:focus{
 .mat_descriptor:after {
     right: -6px;
     border-left: 0px;
+}
+
+.blog-text div{
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+
+}
+
+.blog-text p{
+	margin: 1em 0 0 0;
+}
+
+.about-title{
+	font-size: 5.5vmin;
+	margin: 15vh 0 0 17vw;
+}
+
+.about-content{
+	font-size: calc(0.4*5.5vmin);
+	margin: 6vh 15vw 0 23vw;
+	height: 65vh;
+	overflow: hidden;
+	text-indent: 3em;
 }
