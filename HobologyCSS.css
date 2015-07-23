@@ -187,6 +187,10 @@ http://stackoverflow.com/questions/5060923/how-to-stretch-html-css-horizontal-na
 	transition: margin 1s;
 }
 
+.section-container p{
+    display: inline;
+}
+
 
 /*Container for holding the about or contact page*/
 .about-contact-page-backround{
@@ -279,6 +283,12 @@ Functionality is implimented in javascript*/
 	display: inline-block;
 	text-align: center;
 	cursor: pointer;
+    /* Gradient Transitions Not Yet Supported*/
+    /*
+    -webkit-transition: background-color 1s;
+    transition: background-color 1s;
+    */
+   
 }
 
 .project-image{
@@ -311,7 +321,12 @@ Functionality is implimented in javascript*/
 }
 
 .project:hover{
-	background: radial-gradient(rgba(72,72,59,0.5) 0%, rgba(72,72,59,0.5) 0%, rgba(0,0,0,0) 65%, rgba(0,0,0,0) 100%);
+    color: #555;
+    /*
+    background-color: gray;
+    */
+	/*background: radial-gradient(rgba(42,42,39,0.5) 0%, rgba(42,42,39,0.5) 0%, rgba(0,0,0,0) 75%, rgba(0,0,0,0) 75%);*/
+    
 	/*background: linear-gradient(60%,55%,closest-side,rgba(0,0,0,0),rgba(102,102,83,0.9),rgba(0,0,0,0));
 	*/
 }
@@ -406,11 +421,29 @@ input:focus{
 	padding: 0;
 }
 
+.blog-post-full{
+	width: 100%;
+	font-family: OpenSansLight;
+	font-size: 1.75vmin;
+    /*display: inline-block;*/
+    /*float: left;*/
+}
+
 .blog-post-info{
 	text-align: center;
 	width: 40vmin;
 	padding: 0;
-	margin: 0 5vmin;
+	margin: 0 1vmin;
+	float: left;
+	font-size: 2.5vmin;
+}
+
+.blog-post-info-full{
+	text-align: center;
+    display: inline-block;
+	width: 40vmin;
+	padding: 0;
+	margin: 0 1vmin;
 	float: left;
 	font-size: 2.5vmin;
 }
@@ -439,6 +472,10 @@ input:focus{
 	overflow: hidden;
 }
 
+.blog-text-full{
+    
+}
+
 .recent-readroll-post{
 	font-family: OpenSansLight;
 }
@@ -454,9 +491,10 @@ input:focus{
 }
 
 .recent-readroll-ratings{
+    table-layout: fixed;
 	margin: 0 5vmin 0 40vmin;
-	padding: 2em 0 0 0;
-	width: 62.5vw;
+	padding: 0;
+	width: 25vw;
 	height: 16vmin;
 	text-align: center;
 	font-size: 1.75vmin;
@@ -582,4 +620,115 @@ input:focus{
     right: -6px;
     border-left: 0px;
 >>>>>>> readroll_supreme
+}
+.readroll-container{
+    display:block;
+    margin: 0 auto 0 auto;
+    padding: 0;
+}
+.matrix{
+    position: relative;
+	font-family: "Times New Roman";
+    font-weight: 400;
+    font-size: 13px;
+}
+.matrix:before, .matrix:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    border: 1px solid #000;
+    width: 6px;
+    height: 100%;
+}
+.matrix:before {
+    left: -6px;
+    border-right: 0px;
+}
+.matrix:after {
+    right: -6px;
+    border-left: 0px;
+}
+.matrix td {
+    height: 10vh;
+    width: 10vw;
+    padding: 5px;    
+    text-align: left;
+}
+.val_matrix{
+    position: relative;
+    font-size: 30px;
+}
+.val_matrix:before, .val_matrix:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    border: 1px solid #000;
+    width: 6px;
+    height: 100%;
+}
+.val_matrix:before {
+    left: -6px;
+    border-right: 0px;
+}
+.val_matrix:after {
+    right: -6px;
+    border-left: 0px;
+}
+.val_matrix td {
+    font-family: OpenSansLight;
+    height: 7vh;
+    width: 10vw;
+    padding: 5px;    
+    text-align: center;
+}
+.val_matrix tr {
+    font-family: OpenSansLight;
+    text-align: center;
+}
+.matrix tr {
+    height: 8vh;
+    padding: 5px;    
+    text-align: left;
+}
+.equal_sign{
+    margin: 0 2vw 2vh 2vw;
+    width: 6px;
+    border-top: 1px;
+    border-bottom: 1px;
+    font-size: 17px;
+}
+.mat_descriptor{
+    font-family: OpenSansLight;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+}
+.mat_descriptor td{
+    height: 1vh; 
+    width: 10vw;
+    padding: 5px;    
+    text-align: center;
+    vertical-align: text-bottom;
+}
+.mat_descriptor tr{
+    height: 1vh; 
+    padding: 5px;    
+    text-align: center;
+    vertical-align: text-bottom;
+}
+.mat_descriptor:before, .mat_descriptor:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    border: 1px #000;
+    width: 6px;
+    height: 100%;
+}
+.mat_descriptor:before {
+    left: -6px;
+    border-right: 0px;
+}
+.mat_descriptor:after {
+    right: -6px;
+    border-left: 0px;
 }
