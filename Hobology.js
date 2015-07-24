@@ -193,3 +193,9 @@ function fixTheProblem(){
     ellipseText(document.getElementsByClassName("blog-post")[i].children[1]);
   }
 }
+
+
+document.getElementById("recent-search").onsubmit = function(event){
+  event.preventDefault();
+  alert(document.getElementById("recent-search").children[0].children[0].value);
+}
