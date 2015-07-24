@@ -56,9 +56,10 @@ for (var i=0; i<tabs.length; i++){
 
 var aboutContent='<div class="about-title">Hobology</div><div class="about-content"><p>During the summer of 2015, Sergei and I decided to work on a few devolpment projects. Among those was designing and building a website for us to  share ideas and present the projects we were working on.</p><p>We  attempted to use Bootstrap by editing their Sass. But the more we worked the more we realized our limited, child-like attempts to customize the framework to our needs weren’t working. This website was built with raw html, css, and javascript. No preprocessors, no frameworks, no libraries. It was build as a demonstration that frameworks, although helpful for speed and clarity, can hamper creativity and cause reliance. Now that we’re much better at building websites we’ll likely use more CSS frameworks in the future. And we’ll definitely be using preproessors.</p><p>When we built this we were not actually homeless. We were renting a room from a friend in Lancaster, PA. I had just graduated college as had many of my friends, and among fears of unemployment we often joked of becoming hobo’s. During the summer we devolped a comformtable lifestyle. Making all our own meals, taking lots of walks in the local parks, and studying whatever we felt like between our coding sessions. (Mostly differential equations for me. Sergei was often working on online classes.) We called this lifestyle Hobology.</p><p>If the website’s name seems off-putting, perhaps too unprofessional, too devoid of terms like “enterprise-driven” then you’re also part of the reason this website is called Hobology.</p></div>';
 
+var contactContent='<div class="about-title">Hobology</div><div class="about-content"><p>If you have questions, or just want to say hi, feel free to contact us at</p><table><tr><td>Justin</td><td>Sergey</td></tr><tr><td>jtkantor198@gmail.com</td><td>powah.serge@gmail.com</td></tr></table><p>Direct all work inquiries to <a href="mailto:team.hobology@gmail.com">here</a></p></div>';
+
 /*--------Assigning hadlers to build about and contact pages, and switch between them--------*/
 var mainTopRight = document.getElementsByClassName("main-top-right")[0];
-document.getElementById("main-about").onclick = aboutHandler;
 
 function aboutHandler(){
     var aboutPage = document.createElement("div");
@@ -85,7 +86,7 @@ function aboutHandler(){
     aboutPage.children.namedItem("main-top-right").children.namedItem("main-about").className += "main-selected-about-contact";
 }
 
-document.getElementById("main-contact").onclick = contactHandler;
+
 
 function contactHandler(){
     var contactPage = document.createElement("div");
@@ -98,18 +99,23 @@ function contactHandler(){
     var contactPage = document.getElementById("active-contact-page");
     var contactMainTopRight = mainTopRight.cloneNode(true);
     contactMainTopRight.id = "main-top-right";
-    contactMainTopRight.children.namedItem("main-contact").onclick = function(){
+    contactPage.appendChild(contactMainTopRight);
+    renderHTML(contactPage, contactContent);
+    contactPage.children[0].children.namedItem("main-contact").onclick = function(){
       document.body.removeChild(document.getElementsByClassName("about-contact-page-backround")[0]);
       document.body.removeChild(document.getElementById("active-contact-page"));
     }
-    contactMainTopRight.children.namedItem("main-about").onclick = function(){
+    contactPage.children[0].children.namedItem("main-about").onclick = function(){
       document.body.removeChild(document.getElementsByClassName("about-contact-page-backround")[0]);
       document.body.removeChild(document.getElementById("active-contact-page"));
       aboutHandler();
     }
-    contactPage.appendChild(contactMainTopRight);
     contactPage.children.namedItem("main-top-right").children.namedItem("main-contact").className += "main-selected-about-contact";
 }
+
+//assigning the actual handlers
+document.getElementById("main-contact").onclick = contactHandler;
+document.getElementById("main-about").onclick = aboutHandler;
 
 //Code for rendering html to a div
 function renderHTML(div, htmlString){
